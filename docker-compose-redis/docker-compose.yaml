@@ -1,0 +1,22 @@
+version: '3.5'
+
+services: 
+    mongodb:
+        container_name: redis_container
+        image: redis
+        # environment:
+        #     - MONGO_INITDB_ROOT_USERNAME=root
+        #     - MONGO_INITDB_ROOT_PASSWORD=example      
+        volumes:
+            - redisvolume:/var/lib/redis
+        ports: 
+            - 6379:6379
+        networks:
+            - redisdb
+        restart: unless-stopped
+
+networks: 
+    redisdb:
+        driver: bridge
+volumes: 
+    redisvolume:
